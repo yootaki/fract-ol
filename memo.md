@@ -7,18 +7,23 @@
 
 
 # Todo
-- Manderbrotとjuliaを表示する
-ウインドウ上の一点一点をfor文で見ていく(全探索みたいな感じ)
-一点一点（複素数）がマンデルブロ集合に属すかを計算する。ここで指定回数Zの計算を回していく。
-もし、発散したらfalse。発散しなければtrueを返すようにする。
-trueが帰ってきたらウインドウに表示する
-- 移動、拡大縮小などの実装
-- カラー変化を実装
+## Mandatory
+- コマンドライン引数で表示するフラクタルを指定
+- 無効なパラメータが渡された場合などのエラー処理
+- ESCキーでウインドウを閉じる&プログラム終了
+- マンデルブロを表示
+- ジュリアを表示
+- ジュリアを実部と虚部の値によって形状変化させる
+- サイケデリックな色の変化を追加
+- 矢印キーによる移動機能の実装
+- マウスカーソル部を基準とした拡大縮小機能の実装
+## Bonus
+- もう一つ以上のフラクタルを実装
+- マウス位置に従ったズーム機能
+- 矢印キーでの移動
+- 色の範囲を変化させる
 
 # Studynote
-- X11
-(http://7ujm.net/X/event.html)
-
 - mandelbrot set
 (https://rosettacode.org/wiki/Mandelbrot_set#C)
 ・c = 1 - 2i
@@ -35,35 +40,36 @@ Z1で絶対値が2を超えるため、1-2iはマンデルブロ集合に含ま�
 
 ・マンデルブロ集合は実部と虚部が-2から1の間しかない
 
+## 参考文献：
+- miniLibx
+(https://scrapbox.io/42tokyo-42cursus/miniLibX%E3%81%A3%E3%81%A6%E4%BD%95)
+- X11 events
+(http://7ujm.net/X/event.html)
+- カーソル中心ズーム
+(https://www.notion.so/baa967b962e740fe9d82769ea0819aec)
 - julia set
 (https://en.wikipedia.org/wiki/Julia_set)
-
-
-## 参考文献：
-・miniLibx
-(https://scrapbox.io/42tokyo-42cursus/miniLibX%E3%81%A3%E3%81%A6%E4%BD%95)
-・ヘロンの数学チャンネル
-(https://youtu.be/7KHRYUOikPA)
-・julia set in processing
-(https://youtu.be/fAsaSkmbF5s)
-・虚数とは何か
+- Bresenham’s Line
+(https://github.com/ssloy/tinyrenderer/wiki/Lesson-1:-Bresenham%E2%80%99s-Line-Drawing-Algorithm)
+- 虚数とは何か
 (https://atarimae.biz/archives/500)
-・Cのフラクタル
+- Cのフラクタル
 (https://www.geeksforgeeks.org/fractals-in-cc/)
-・フラクタルファウンデーション
-(https://fractalfoundation.org/resources/learn-to-code/)
-・ユーチューブ(フラクタル)
-(https://youtu.be/ovJcsL7vyrk)
-・カオス論研究 :古代カオス神話から現代数理カオス理論まで
-(https://rnavi.ndl.go.jp/mokuji_html/024418167.html)
-・マルチフラクタル，Tsallis統計による医用画像認識
+- マルチフラクタル，Tsallis統計による医用画像認識
 (https://www.jstage.jst.go.jp/article/pjsai/JSAI01/0/JSAI01_0_223/_pdf/-char/ja)
 
+## 動画
+- ヘロンの数学チャンネル
+(https://youtu.be/7KHRYUOikPA)
+- julia set in processing
+(https://youtu.be/fAsaSkmbF5s)
+- This equation will change how you see the world
+(https://youtu.be/ovJcsL7vyrk)
 
 ## PDF
-・Fractal coding
+- Fractal coding
 (https://www.researchgate.net/publication/323607730_Fractal_Coding)
-・Fractal - Stanford University
+- Fractal - Stanford University
 (https://web.stanford.edu/class/archive/cs/cs106b/cs106b.1178/lectures/8-Fractals/8-Fractals.pdf)
 
 ## Man page
