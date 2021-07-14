@@ -11,27 +11,27 @@
 # include <stdio.h>
 # include <stdlib.h>
 
-# define WIDTH 600
+# define WIDTH  600
 # define HEIGHT 400
-# define I_MAX 25
+# define I_MAX  25
 # define RADIUS 2
 
 # ifdef __linux
-#  define KEY_LEFT    65361
-#  define KEY_RIGHT    65363
-#  define KEY_DOWN    65364
-#  define KEY_UP    65362
-#  define KEY_SCROLLUP 5
+#  define KEY_LEFT       65361
+#  define KEY_RIGHT      65363
+#  define KEY_DOWN       65364
+#  define KEY_UP         65362
+#  define KEY_SCROLLUP   5
 #  define KEY_SCROLLDOWN 4
-#  define KEY_ESC    65307
+#  define KEY_ESC        65307
 # else
-#  define KEY_LEFT    123
-#  define KEY_RIGHT    124
-#  define KEY_DOWN    125
-#  define KEY_SCROLLUP 5
+#  define KEY_LEFT       123
+#  define KEY_RIGHT      124
+#  define KEY_DOWN       125
+#  define KEY_SCROLLUP   5
 #  define KEY_SCROLLDOWN 4
-#  define KEY_UP    126
-#  define KEY_ESC    53
+#  define KEY_UP         126
+#  define KEY_ESC        53
 # endif
 
 typedef struct s_vars

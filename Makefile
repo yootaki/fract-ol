@@ -4,11 +4,9 @@ NAME = a.out
 CC = gcc
 
 LINUX_FLAGS = -Wall -Wextra -Werror -Lmlx_Linux -L includes/minilibx-linux/ -lmlx_Linux -lXext -lX11 -lm
+LINUX_INCLUDE = -I includes/minilibx-linux/
 
 MAC_FLAGS = -L includes/minilibx_opengl_20191021/ -lmlx -framework OpenGL -framework AppKit
-
-LINUX_INCLUDE = -I includes/minilibx-linux/ -I includes/
-
 MAC_INCLUDE = -I includes/minilibx_opengl_20191021/
 
 SRCS = srcs/main.c\
@@ -17,18 +15,28 @@ srcs/calc.c\
 srcs/hooks.c\
 srcs/utils.c
 
+DEBUG_DIR = a.out.dSYM
+
 
 all:
+ifeq ($(OS),LINUX)
 	$(CC) $(SRCS) $(LINUX_FLAGS) $(LINUX_INCLUDE)
-
-mac:
+else
 	$(CC) $(SRCS) $(MAC_FLAGS) $(MAC_INCLUDE)
+endif
 
 bonus: all
 
 clean:
+	rm -rf $(DEBUG_DIR)
+
+fclean: clean
 	rm -f $(NAME)
 
-re: clean all
+debug: CC += -g3 -fsanitize=address
 
-.PHONY: all mac bonus clean re
+debug: re
+
+re: fclean all
+
+.PHONY: all bonus debug fclean clean re
