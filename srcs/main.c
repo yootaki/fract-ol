@@ -5,10 +5,12 @@ int	main(int argc, char **argv)
 	t_vars	vars;
 
 	vars.mlx = mlx_init();
+	if (vars.mlx == NULL)
+		return (0);
 	vars.win = mlx_new_window(vars.mlx, WIDTH, HEIGHT, "Fractol");
 	vars.side = -3.0;
 	vars.vert = -2.0;
-	vars.mag = 1.1;
+	vars.mag = 1.2;
 	if (argc == 2 && \
 	(argv[1][0] == '1' || argv[1][0] == '2' || argv[1][0] == '4'))
 		vars.type = argv[1][0] - '0';

@@ -13,7 +13,7 @@ int	key_hook(int keycode, t_vars *vars)
 	if (keycode == KEY_ESC)
 	{
 		mlx_destroy_window(vars->mlx, vars->win);
-		mlx_destroy_desplay(vars->mlx);
+		mlx_destroy_display(vars->mlx);
 		free(vars->mlx);
 		exit(0);
 	}
