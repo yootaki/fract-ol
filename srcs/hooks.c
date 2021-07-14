@@ -4,7 +4,7 @@ int	mouse_hook(int x, int y, t_vars *vars)
 {
 	vars->x_mouse = x;
 	vars->y_mouse = y;
-	fractal(vars);
+	fractal(vars, 0xFFFFFFFF);
 	return (0);
 }
 
@@ -13,6 +13,9 @@ int	key_hook(int keycode, t_vars *vars)
 	if (keycode == KEY_ESC)
 	{
 		mlx_destroy_window(vars->mlx, vars->win);
+		if (OS == 42)
+			mlx_destroy_desplay(vars->mlx);
+		free(vars->mlx);
 		exit(0);
 	}
 	else
@@ -25,7 +28,7 @@ int	key_hook(int keycode, t_vars *vars)
 			vars->side -= 0.5;
 		else if (keycode == KEY_RIGHT)
 			vars->side += 0.5;
-		fractal(vars);
+		fractal(vars, 0xFFFFFFFF);
 	}
 	return (0);
 }
@@ -49,6 +52,6 @@ int	mouse_click(int button, int x, int y, t_vars *vars)
 	}
 	else if (button != 4 && button != 6 && button != 7)
 		printf("(%f,%f)\n", c.x, c.y);
-	fractal(vars);
+	fractal(vars, 0xFFFFFFFF);
 	return (0);
 }

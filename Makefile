@@ -20,9 +20,9 @@ DEBUG_DIR = a.out.dSYM
 
 all:
 ifeq ($(shell uname),Linux)
-	$(CC) $(SRCS) $(LINUX_FLAGS) $(LINUX_INCLUDE)
+	$(CC) $(SRCS) $(LINUX_INCLUDE) $(LINUX_FLAGS)
 else
-	$(CC) $(SRCS) $(MAC_FLAGS) $(MAC_INCLUDE)
+	$(CC) $(SRCS) $(MAC_INCLUDE) $(MAC_FLAGS)
 endif
 
 bonus: all

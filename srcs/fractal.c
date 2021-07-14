@@ -94,12 +94,11 @@ int	burningship(t_vars *vars, int ix, int iy)
 	return (create_trgb(vars, c, i));
 }
 
-void	fractal(t_vars *vars)
+void	fractal(t_vars *vars, int color)
 {
 	t_data	img;
 	int		ix;
 	int		iy;
-	int		color;
 
 	img.img = mlx_new_image(vars->mlx, WIDTH, HEIGHT);
 	img.addr = mlx_get_data_addr(img.img, \
@@ -120,4 +119,6 @@ void	fractal(t_vars *vars)
 		}
 	}
 	mlx_put_image_to_window(vars->mlx, vars->win, img.img, 0, 0);
+	if (OS == 42)
+		mlx_destroy_image(vars->mlx, img.img);
 }

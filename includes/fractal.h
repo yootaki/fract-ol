@@ -3,6 +3,7 @@
 
 # ifdef __linux
 #  include "./minilibx-linux/mlx.h"
+#  include "./minilibx-linux/mlx_int.h"
 # else
 #  include "./minilibx_opengl_20191021/mlx.h"
 # endif
@@ -17,6 +18,7 @@
 # define RADIUS 2
 
 # ifdef __linux
+#  define OS             42
 #  define KEY_LEFT       65361
 #  define KEY_RIGHT      65363
 #  define KEY_DOWN       65364
@@ -25,6 +27,7 @@
 #  define KEY_SCROLLDOWN 4
 #  define KEY_ESC        65307
 # else
+#  define OS             0
 #  define KEY_LEFT       123
 #  define KEY_RIGHT      124
 #  define KEY_DOWN       125
@@ -77,7 +80,7 @@ int			create_trgb(t_vars *vars, t_complex c, int i);
 int			mandelbrot(t_vars *vars, int ix, int iy);
 int			julia(t_vars *vars, int ix, int iy);
 int			burningship(t_vars *vars, int ix, int iy);
-void		fractal(t_vars *vars);
+void		fractal(t_vars *vars, int color);
 
 void		my_mlx_pixel_put(t_data *data, int x, int y, int color);
 void		err_print(void);
