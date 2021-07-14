@@ -16,10 +16,12 @@ void	err_print(void)
  ex) $ ./a.out 1\n\
      $ ./a.out 2\n\
      $ ./a.out 3 -0.8 0.156\n\
+     $ ./a.out 4\n\
 \n\
  1 : Mandelbrot\n\
- 2 : julia with mouse coordinate\n\
- 3 : julia with params\n\
+ 2 : Julia with mouse coordinate\n\
+ 3 : Julia with params\n\
+ 4 : Burning Ship\n\
 -----------------------------------\n\n\
 \x1b[39m");
 	exit(1);

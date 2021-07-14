@@ -8,7 +8,7 @@ int	main(int argc, char **argv)
 	vars.win = mlx_new_window(vars.mlx, WIDTH, HEIGHT, "Fractol");
 	vars.side = -3.0;
 	vars.vert = -2.0;
-	vars.mag = 1.0;
+	vars.mag = 1.1;
 	if (argc == 2 && \
 	(argv[1][0] == '1' || argv[1][0] == '2' || argv[1][0] == '4'))
 		vars.type = argv[1][0] - '0';

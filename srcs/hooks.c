@@ -38,14 +38,14 @@ int	mouse_click(int button, int x, int y, t_vars *vars)
 	if (button == KEY_SCROLLUP)
 	{
 		vars->mag += 1.0;
-		vars->side -= (1.0 - vars->mag) * c.x / 600.0 - c.x;
-		vars->vert -= (1.0 - vars->mag) * c.y / 400.0 - c.y;
+		vars->side -= (1.0 - vars->mag) * c.x / (600.0 * vars->mag) - c.x;
+		vars->vert -= (1.0 - vars->mag) * c.y / (400.0 * vars->mag) - c.y;
 	}
-	else if (button == KEY_SCROLLDOWN && vars->mag > 1.0)
+	else if (button == KEY_SCROLLDOWN && vars->mag >= 1.1)
 	{
 		vars->mag -= 1.0;
-		vars->side += (1.0 - vars->mag) * c.x / 600.0 - c.x;
-		vars->vert += (1.0 - vars->mag) * c.y / 400.0 - c.y;
+		vars->side += (1.0 - vars->mag) * c.x / (600.0 * vars->mag) - c.x;
+		vars->vert += (1.0 - vars->mag) * c.y / (400.0 * vars->mag) - c.y;
 	}
 	else if (button != 4 && button != 6 && button != 7)
 		printf("(%f,%f)\n", c.x, c.y);

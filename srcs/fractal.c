@@ -13,7 +13,7 @@ int	create_trgb(t_vars *vars, t_complex c, int i)
 		r = cos(0.6 * 100 * c.x + 0) * 127 + 128;
 		g = cos(0.6 * 100 * c.y + 2 * M_PI / 3) * 127 + 128;
 		b = cos(0.6 * 100 * (c.x + c.y) + 4 * M_PI / 3) * 127 + 128;
-		if (vars->type == 1)
+		if (vars->type == 1 || vars->type == 4)
 		{
 			r = 0;
 			g = 0;
@@ -60,7 +60,7 @@ int	julia(t_vars *vars, int ix, int iy)
 	if (vars->type == 2)
 		c = mappoint(vars, vars->x_mouse, vars->y_mouse);
 	else
-		c = init(vars->x_param, vars->y_param);
+		c = init(vars->x_param, vars->y_param * -1.0);
 	z0 = mappoint(vars, ix, iy);
 	i = 0;
 	while (++i < I_MAX)
