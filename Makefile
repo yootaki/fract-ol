@@ -19,7 +19,7 @@ DEBUG_DIR = a.out.dSYM
 
 
 all:
-ifeq ($(OS),LINUX)
+ifeq ($(shell uname),Linux)
 	$(CC) $(SRCS) $(LINUX_FLAGS) $(LINUX_INCLUDE)
 else
 	$(CC) $(SRCS) $(MAC_FLAGS) $(MAC_INCLUDE)
