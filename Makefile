@@ -1,10 +1,9 @@
 
-NAME = fractal
 CC = gcc
 
-CFLAGS = -L includes/minilibx_opengl_20191021/ -lmlx -framework OpenGL -framework AppKit
+CFLAGS = -Wall -Wextra -Werror -Lmlx_Linux -L includes/minilibx-linux/ -lmlx_Linux -lXext -lX11 -lm -g -fsanitize=address
 
-INCLUDE = -I includes/minilibx_opengl_20191021/
+INCLUDE = -I includes/minilibx-linux/ -I includes/
 
 SRCS = srcs/main.c\
 srcs/fractal.c\
@@ -13,10 +12,8 @@ srcs/hooks.c\
 srcs/utils.c
 
 
-all: $(NAME)
-
-$(NAME):
-	$(CC) $(CFLAGS) $(INCLUDE) $(SRCS)
+all:
+	$(CC) $(SRCS) $(CFLAGS) $(INCLUDE)
 
 clean:
 	rm -f $(OBJS)

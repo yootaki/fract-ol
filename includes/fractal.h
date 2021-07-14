@@ -1,7 +1,7 @@
 #ifndef FRACTAL_H
 # define FRACTAL_H
 
-# include "./minilibx_opengl_20191021/mlx.h"
+# include "./minilibx-linux/mlx.h"
 # include <math.h>
 # include <stdio.h>
 # include <stdlib.h>
