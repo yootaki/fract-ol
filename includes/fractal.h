@@ -11,20 +11,20 @@
 # define I_MAX 25
 # define RADIUS 2
 
-# ifdef LINUX
+# ifdef __linux
 #  define KEY_LEFT    65361
 #  define KEY_RIGHT    65363
 #  define KEY_DOWN    65364
 #  define KEY_UP    65362
-#  define KEY_SCROLLUP 177
-#  define KEY_SCROLLDOWN 178
+#  define KEY_SCROLLUP 5
+#  define KEY_SCROLLDOWN 4
 #  define KEY_ESC    65307
 # else
 #  define KEY_LEFT    123
 #  define KEY_RIGHT    124
 #  define KEY_DOWN    125
-#  define KEY_SCROLLUP 4
-#  define KEY_SCROLLDOWN 5
+#  define KEY_SCROLLUP 5
+#  define KEY_SCROLLDOWN 4
 #  define KEY_UP    126
 #  define KEY_ESC    53
 # endif

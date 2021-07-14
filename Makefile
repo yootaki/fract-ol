@@ -1,7 +1,7 @@
 
 CC = gcc
 
-CFLAGS = -Wall -Wextra -Werror -Lmlx_Linux -L includes/minilibx-linux/ -lmlx_Linux -lXext -lX11 -lm -g -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -Lmlx_Linux -L includes/minilibx-linux/ -lmlx_Linux -lXext -lX11 -lm
 
 INCLUDE = -I includes/minilibx-linux/ -I includes/
 
