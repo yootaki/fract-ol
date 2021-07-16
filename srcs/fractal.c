@@ -101,9 +101,7 @@ void	fractal(t_vars *vars)
 	int		iy;
 	int		color;
 
-	img.img = mlx_new_image(vars->mlx, WIDTH, HEIGHT);
-	img.addr = mlx_get_data_addr(img.img, \
-	&img.bits_per_pixel, &img.line_length, &img.endian);
+	make_image(vars, &img);
 	iy = -1;
 	while (++iy < HEIGHT)
 	{

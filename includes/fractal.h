@@ -80,9 +80,11 @@ int			julia(t_vars *vars, int ix, int iy);
 int			burningship(t_vars *vars, int ix, int iy);
 void		fractal(t_vars *vars);
 
+void		make_image(t_vars *vars, t_data *img);
 void		my_mlx_pixel_put(t_data *data, int x, int y, int color);
-void		err_print(void);
 int			ft_isdigit(int c);
 double		myatof(char *s);
+
+void		err_print(t_vars *vars);
 
 #endif

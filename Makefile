@@ -21,9 +21,9 @@ srcs/utils.c
 #osがlinuxの場合とその他の場合でコンパイルを分ける
 all: $(MINILIBX_LINUX)
 ifeq ($(shell uname),Linux)
-	$(CC) $(SRCS) $(LINUX_INCLUDE) $(LINUX_FLAGS)
+	$(CC) $(CFLAGS) $(SRCS) $(LINUX_INCLUDE) $(LINUX_FLAGS)
 else
-	$(CC) $(SRCS) $(MAC_INCLUDE) $(MAC_FLAGS)
+	$(CC) $(CFLAGS) $(SRCS) $(MAC_INCLUDE) $(MAC_FLAGS)
 endif
 
 #ディレクトリがない場合はgitcloneしてmake

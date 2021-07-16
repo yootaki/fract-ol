@@ -2,8 +2,8 @@
 # ToDo
 ✅やること
 - メモリリークの確認
-- makefile使えるか確認
 - エラー処理の確認
+- boonusの確認
 
 ✅READ.ME書く
 - mlx_install.shでインストールするやり方
