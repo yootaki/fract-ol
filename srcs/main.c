@@ -74,7 +74,11 @@ int	main(int argc, char **argv)
 		return (0);
 	vars.win = mlx_new_window(vars.mlx, WIDTH, HEIGHT, "Fract-ol");
 	if (vars.win == NULL)
+	{
+		mlx_destroy_display(vars.mlx);
+		free(vars.mlx);
 		return (0);
+	}
 	vars_init(&vars, argc, argv);
 	mlx_mouse_hook(vars.win, mouse_click, &vars);
 	mlx_hook(vars.win, 6, 1L << 6, mouse_hook, &vars);
