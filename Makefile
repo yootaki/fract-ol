@@ -1,6 +1,6 @@
 
-EXE = ./a.out
-DEBUG_DIR = a.out.dSYM
+NAME = fractol
+DEBUG_DIR = fractol.dSYM
 MINILIBX_LINUX = includes/minilibx-linux
 
 CC = gcc
@@ -18,12 +18,22 @@ srcs/calc.c\
 srcs/hooks.c\
 srcs/utils.c
 
+OBJS = $(SRCS:.c=.o)
+
+# **************************************************
+# **************************************************
+
+all: $(NAME)
+
+.c.o:
+	$(CC) $(CFLAGS) -c $< -o $@
+
 #osがlinuxの場合とその他の場合でコンパイルを分ける
-all: $(MINILIBX_LINUX)
+$(NAME): $(MINILIBX_LINUX) $(OBJS)
 ifeq ($(shell uname),Linux)
 	$(CC) $(CFLAGS) $(SRCS) $(LINUX_INCLUDE) $(LINUX_FLAGS)
 else
-	$(CC) $(CFLAGS) $(SRCS) $(MAC_INCLUDE) $(MAC_FLAGS)
+	$(CC) $(CFLAGS) $(OBJS) -o $(NAME) $(MAC_INCLUDE) $(MAC_FLAGS)
 endif
 
 #ディレクトリがない場合はgitcloneしてmake
@@ -33,20 +43,30 @@ ifeq (,${$(MINILIBX_LINUX)})
 endif
 	$(MAKE) -C $(MINILIBX_LINUX)
 
+# **************************************************
+# **************************************************
+
 bonus: all
 
 clean:
+	rm -f $(OBJS)
 	rm -rf $(DEBUG_DIR)
 	rm -rf $(MINILIBX_LINUX)
 
 fclean: clean
-	rm -f $(EXE)
+	rm -f $(NAME)
+
+re: fclean all
+
+# **************************************************
+# **************************************************
 
 #セグフォなどのデバッグ用フラグ
 debug: CFLAGS += -g3 -fsanitize=address
 
 debug: re
 
-re: fclean all
+# **************************************************
+# **************************************************
 
 .PHONY: all bonus debug fclean clean re

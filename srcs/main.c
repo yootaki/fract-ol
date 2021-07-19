@@ -29,10 +29,10 @@ void	err_print(t_vars *vars)
 	printf("\x1b[33m\n\
 -< Give a number as an argument. >-\n\
 \n\
- ex) $ ./a.out 1\n\
-     $ ./a.out 2\n\
-     $ ./a.out 3 -0.8 0.156\n\
-     $ ./a.out 4\n\
+ ex) $ ./fractol 1\n\
+     $ ./fractol 2\n\
+     $ ./fractol 3 -0.8 0.156\n\
+     $ ./fractol 4\n\
 \n\
  1 : Mandelbrot\n\
  2 : Julia with mouse coordinate\n\

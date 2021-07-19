@@ -40,12 +40,12 @@ int	mandelbrot(t_vars *vars, int ix, int iy)
 	z0 = init(0.0, 0.0);
 	z1 = init(0.0, 0.0);
 	i = 0;
-	while (++i < I_MAX && (mod(z0)) < pow(RADIUS, 2.0))
+	while (++i < I_MAX)
 	{
-		z0.y = 2 * z0.x * z0.y + c.y;
-		z0.x = z1.x - z1.y + c.x;
-		z1.x = pow(z0.x, 2.0);
-		z1.y = pow(z0.y, 2.0);
+		z1 = add(sqr(z0), c);
+		if (mod(z1) > RADIUS)
+			break ;
+		z0 = z1;
 	}
 	return (create_trgb(vars, c, i));
 }
@@ -84,12 +84,13 @@ int	burningship(t_vars *vars, int ix, int iy)
 	z0 = init(0.0, 0.0);
 	z1 = init(0.0, 0.0);
 	i = 0;
-	while (++i < I_MAX && mod(z0) < pow(RADIUS, 2.0))
+	while (++i < I_MAX)
 	{
-		z0.y = 2 * fabs(z0.x) * fabs(z0.y) + c.y;
-		z0.x = z1.x - z1.y + c.x;
-		z1.x = pow(z0.x, 2.0);
-		z1.y = pow(z0.y, 2.0);
+		z1 = add(sqr(z0), c);
+		if (mod(z1) > RADIUS)
+			break ;
+		z0.x = fabs(z1.x);
+		z0.y = fabs(z1.y);
 	}
 	return (create_trgb(vars, c, i));
 }
