@@ -36,7 +36,7 @@ t_complex	mappoint(t_vars *vars, int x, int y)
 {
 	t_complex	c;
 
-	c.x = (x / (WIDTH / (WIDTH / 100.0)) + vars->side) / vars->mag;
-	c.y = (y / (HEIGHT / (HEIGHT / 100.0)) + vars->vert) / vars->mag;
+	c.x = (x / 100.0 + vars->side) / vars->mag;
+	c.y = (y / 100.0 + vars->vert) / vars->mag;
 	return (c);
 }

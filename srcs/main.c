@@ -49,8 +49,8 @@ void	err_print(t_vars *vars)
 void	vars_init(t_vars *vars, int argc, char **argv)
 {
 	vars->side = -3.0;
-	vars->vert = -2.0;
-	vars->mag = 1.2;
+	vars->vert = -3.0;
+	vars->mag = 1.0;
 	if (argc == 2 && \
 	(argv[1][0] == '1' || argv[1][0] == '2' || argv[1][0] == '4'))
 		vars->type = argv[1][0] - '0';
@@ -83,6 +83,7 @@ int	main(int argc, char **argv)
 	mlx_mouse_hook(vars.win, mouse_click, &vars);
 	mlx_hook(vars.win, 6, 1L << 6, mouse_hook, &vars);
 	mlx_hook(vars.win, 2, 1L << 0, key_hook, &vars);
+	mlx_hook(vars.win, 33, 1L << 33, cross_button, &vars);
 	mlx_loop(vars.mlx);
 	return (0);
 }

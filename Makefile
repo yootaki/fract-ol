@@ -31,7 +31,7 @@ all: $(NAME)
 #osがlinuxの場合とその他の場合でコンパイルを分ける
 $(NAME): $(MINILIBX_LINUX) $(OBJS)
 ifeq ($(shell uname),Linux)
-	$(CC) $(CFLAGS) $(SRCS) $(LINUX_INCLUDE) $(LINUX_FLAGS)
+	$(CC) $(CFLAGS) $(OBJS) -o $(NAME) $(LINUX_INCLUDE) $(LINUX_FLAGS)
 else
 	$(CC) $(CFLAGS) $(OBJS) -o $(NAME) $(MAC_INCLUDE) $(MAC_FLAGS)
 endif

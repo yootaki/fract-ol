@@ -13,8 +13,8 @@
 # include <stdlib.h>
 
 # define WIDTH  600
-# define HEIGHT 400
-# define I_MAX  25
+# define HEIGHT 600
+# define I_MAX  50
 # define RADIUS 2
 
 # ifdef __linux
@@ -73,6 +73,7 @@ t_complex	mappoint(t_vars *vars, int x, int y);
 int			mouse_hook(int x, int y, t_vars *vars);
 int			mouse_click(int button, int x, int y, t_vars *vars);
 int			key_hook(int keycode, t_vars *vars);
+int			cross_button(t_vars *vars);
 
 int			create_trgb(t_vars *vars, t_complex c, int i);
 int			mandelbrot(t_vars *vars, int ix, int iy);

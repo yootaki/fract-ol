@@ -35,22 +35,37 @@ int	key_hook(int keycode, t_vars *vars)
 int	mouse_click(int button, int x, int y, t_vars *vars)
 {
 	t_complex	c;
+	double		n;
 
 	c = mappoint(vars, x, y);
+	n = 0.0;
 	if (button == KEY_SCROLLUP)
 	{
-		vars->mag += 1.0;
-		vars->side -= (1.0 - vars->mag) * c.x / (600.0 * vars->mag) - c.x;
-		vars->vert -= (1.0 - vars->mag) * c.y / (400.0 * vars->mag) - c.y;
+		n = vars->mag * 1.0001;
+		vars->mag += n;
+		vars->side -= n * c.x / (600.0 * vars->mag) - n * c.x;
+		vars->vert -= n * c.y / (600.0 * vars->mag) - n * c.y;
 	}
-	else if (button == KEY_SCROLLDOWN && vars->mag >= 1.1)
+	else if (button == KEY_SCROLLDOWN)
 	{
-		vars->mag -= 1.0;
-		vars->side += (1.0 - vars->mag) * c.x / (600.0 * vars->mag) - c.x;
-		vars->vert += (1.0 - vars->mag) * c.y / (400.0 * vars->mag) - c.y;
+		n = vars->mag * 0.59;
+		vars->mag -= n;
+		if (vars->mag <= 0.1)
+			vars->mag = 0.01;
+		vars->side += n * c.x / (600.0 * vars->mag) - n * c.x;
+		vars->vert += n * c.y / (600.0 * vars->mag) - n * c.y;
 	}
 	else if (button != 4 && button != 6 && button != 7)
 		printf("(%f,%f)\n", c.x, c.y);
 	fractal(vars);
+	return (0);
+}
+
+int	cross_button(t_vars *vars)
+{
+	mlx_destroy_window(vars->mlx, vars->win);
+	mlx_destroy_display(vars->mlx);
+	free(vars->mlx);
+	exit(0);
 	return (0);
 }
