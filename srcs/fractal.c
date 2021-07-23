@@ -97,12 +97,10 @@ int	burningship(t_vars *vars, int ix, int iy)
 
 void	fractal(t_vars *vars)
 {
-	t_data	img;
 	int		ix;
 	int		iy;
 	int		color;
 
-	make_image(vars, &img);
 	iy = -1;
 	while (++iy < HEIGHT)
 	{
@@ -115,9 +113,8 @@ void	fractal(t_vars *vars)
 				color = julia(vars, ix, iy);
 			else if (vars->type == 4)
 				color = burningship(vars, ix, iy);
-			my_mlx_pixel_put(&img, ix, iy, color);
+			my_mlx_pixel_put(vars, ix, iy, color);
 		}
 	}
-	mlx_put_image_to_window(vars->mlx, vars->win, img.img, 0, 0);
-	mlx_destroy_image(vars->mlx, img.img);
+	mlx_put_image_to_window(vars->mlx, vars->win, vars->img, 0, 0);
 }

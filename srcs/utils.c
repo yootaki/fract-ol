@@ -1,23 +1,36 @@
 #include "../includes/fractal.h"
 
-void	make_image(t_vars *vars, t_data *img)
+void	err_print(void)
 {
-	img->img = mlx_new_image(vars->mlx, WIDTH, HEIGHT);
-	if (img->img == NULL)
-	{
-		printf("\n\x1b[41m Failed to malloc \
-in mlx_new_image. \x1b[49m\n");
-		err_print(vars);
-	}
-	img->addr = mlx_get_data_addr(img->img, \
-	&img->bits_per_pixel, &img->line_length, &img->endian);
+	printf("\x1b[33m\n\
+-< Give a number as an argument. >-\n\
+\n\
+ ex) $ ./fractol 1\n\
+     $ ./fractol 2\n\
+     $ ./fractol 3 -0.8 0.156\n\
+     $ ./fractol 4\n\
+\n\
+ 1 : Mandelbrot\n\
+ 2 : Julia with mouse coordinate\n\
+ 3 : Julia with params\n\
+ 4 : Burning Ship\n\
+-----------------------------------\n\n\
+\x1b[39m");
 }
 
-void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
+void	free_mlx(t_vars *vars)
+{
+	mlx_destroy_window(vars->mlx, vars->win);
+	mlx_destroy_display(vars->mlx);
+	mlx_destroy_image(vars->mlx, vars->img);
+	free(vars->mlx);
+}
+
+void	my_mlx_pixel_put(t_vars *vars, int x, int y, int color)
 {
 	char	*dst;
 
-	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
+	dst = vars->addr + (y * vars->line_length + x * (vars->bits_per_pixel / 8));
 	*(unsigned int *)dst = color;
 }
 

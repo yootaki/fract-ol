@@ -24,33 +24,8 @@ int	argv_check(char *s)
 	return (1);
 }
 
-void	err_print(t_vars *vars)
+int	args_check(t_vars *vars, int argc, char **argv)
 {
-	printf("\x1b[33m\n\
--< Give a number as an argument. >-\n\
-\n\
- ex) $ ./fractol 1\n\
-     $ ./fractol 2\n\
-     $ ./fractol 3 -0.8 0.156\n\
-     $ ./fractol 4\n\
-\n\
- 1 : Mandelbrot\n\
- 2 : Julia with mouse coordinate\n\
- 3 : Julia with params\n\
- 4 : Burning Ship\n\
------------------------------------\n\n\
-\x1b[39m");
-	mlx_destroy_window(vars->mlx, vars->win);
-	mlx_destroy_display(vars->mlx);
-	free(vars->mlx);
-	exit(1);
-}
-
-void	vars_init(t_vars *vars, int argc, char **argv)
-{
-	vars->side = -3.0;
-	vars->vert = -3.0;
-	vars->mag = 1.0;
 	if (argc == 2 && \
 	(argv[1][0] == '1' || argv[1][0] == '2' || argv[1][0] == '4'))
 		vars->type = argv[1][0] - '0';
@@ -62,28 +37,57 @@ void	vars_init(t_vars *vars, int argc, char **argv)
 		vars->y_param = myatof(argv[3]);
 	}
 	else
-		err_print(vars);
+		return (1);
+	return (0);
+}
+
+int	vars_init(t_vars *vars)
+{
+	vars->mlx = mlx_init();
+	if (vars->mlx == NULL)
+		return (1);
+	vars->win = mlx_new_window(vars->mlx, WIDTH, HEIGHT, "Fract-ol");
+	if (vars->win == NULL)
+		return (1);
+	vars->side = -3.0;
+	vars->vert = -3.0;
+	vars->mag = 1.0;
+	return (0);
+}
+
+int	make_image(t_vars *vars)
+{
+	vars->img = mlx_new_image(vars->mlx, WIDTH, HEIGHT);
+	if (vars->img == NULL)
+	{
+		printf("\n\x1b[41m Failed to malloc \
+in mlx_new_image. \x1b[49m\n");
+		return(1);
+	}
+	vars->addr = mlx_get_data_addr(vars->img, \
+	&vars->bits_per_pixel, &vars->line_length, &vars->endian);
+	return (0);
 }
 
 int	main(int argc, char **argv)
 {
 	t_vars	vars;
 
-	vars.mlx = mlx_init();
-	if (vars.mlx == NULL)
-		return (0);
-	vars.win = mlx_new_window(vars.mlx, WIDTH, HEIGHT, "Fract-ol");
-	if (vars.win == NULL)
+	if (args_check(&vars, argc, argv))
 	{
-		mlx_destroy_display(vars.mlx);
-		free(vars.mlx);
-		return (0);
+		err_print();
+		return (1);
 	}
-	vars_init(&vars, argc, argv);
+	if (vars_init(&vars) || make_image(&vars))
+	{
+		free_mlx(&vars);
+		return (1);
+	}
+	fractal(&vars);
 	mlx_mouse_hook(vars.win, mouse_click, &vars);
 	mlx_hook(vars.win, 6, 1L << 6, mouse_hook, &vars);
 	mlx_hook(vars.win, 2, 1L << 0, key_hook, &vars);
-	mlx_hook(vars.win, 33, 1L << 33, cross_button, &vars);
+	mlx_hook(vars.win, 17, 1L << 17, cross_button, &vars);
 	mlx_loop(vars.mlx);
 	return (0);
 }

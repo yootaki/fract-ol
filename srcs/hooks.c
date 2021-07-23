@@ -12,9 +12,7 @@ int	key_hook(int keycode, t_vars *vars)
 {
 	if (keycode == KEY_ESC)
 	{
-		mlx_destroy_window(vars->mlx, vars->win);
-		mlx_destroy_display(vars->mlx);
-		free(vars->mlx);
+		free_mlx(vars);
 		exit(0);
 	}
 	else
@@ -41,17 +39,16 @@ int	mouse_click(int button, int x, int y, t_vars *vars)
 	n = 0.0;
 	if (button == KEY_SCROLLUP)
 	{
-		n = vars->mag * 1.0001;
+		n = vars->mag * 1.00001;
 		vars->mag += n;
 		vars->side -= n * c.x / (600.0 * vars->mag) - n * c.x;
 		vars->vert -= n * c.y / (600.0 * vars->mag) - n * c.y;
 	}
 	else if (button == KEY_SCROLLDOWN)
 	{
-		n = vars->mag * 0.59;
+		if (vars->mag > 0.1)
+			n = vars->mag * 0.5;
 		vars->mag -= n;
-		if (vars->mag <= 0.1)
-			vars->mag = 0.01;
 		vars->side += n * c.x / (600.0 * vars->mag) - n * c.x;
 		vars->vert += n * c.y / (600.0 * vars->mag) - n * c.y;
 	}
@@ -63,9 +60,7 @@ int	mouse_click(int button, int x, int y, t_vars *vars)
 
 int	cross_button(t_vars *vars)
 {
-	mlx_destroy_window(vars->mlx, vars->win);
-	mlx_destroy_display(vars->mlx);
-	free(vars->mlx);
+	free_mlx(vars);
 	exit(0);
 	return (0);
 }
