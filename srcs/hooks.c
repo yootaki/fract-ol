@@ -25,7 +25,7 @@ int	key_hook(int keycode, t_vars *vars)
 		vars->side += 0.5;
 	else if (keycode == KEY_A && vars->color >= 16)
 		vars->color -= 16;
-	else if (keycode == KEY_D && vars->color < INT32_MAX)
+	else if (keycode == KEY_D && vars->color <= 2147483631)
 		vars->color += 16;
 	fractal(vars);
 	return (0);

@@ -20,9 +20,9 @@ void	err_print(void)
 
 void	free_mlx(t_vars *vars)
 {
+	mlx_destroy_image(vars->mlx, vars->img);
 	mlx_destroy_window(vars->mlx, vars->win);
 	mlx_destroy_display(vars->mlx);
-	mlx_destroy_image(vars->mlx, vars->img);
 	free(vars->mlx);
 }
 
