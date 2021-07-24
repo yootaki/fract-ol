@@ -1,6 +1,6 @@
 #include "../includes/fractal.h"
 
-int	create_trgb(t_vars *vars, t_complex c, int i)
+int	create_trgb(t_vars *vars, int i)
 {
 	int	t;
 	int	r;
@@ -10,21 +10,15 @@ int	create_trgb(t_vars *vars, t_complex c, int i)
 	t = 0;
 	if (i == I_MAX)
 	{
-		r = cos(0.6 * 100 * c.x + 0) * 127 + 128;
-		g = cos(0.6 * 100 * c.y + 2 * M_PI / 3) * 127 + 128;
-		b = cos(0.6 * 100 * (c.x + c.y) + 4 * M_PI / 3) * 127 + 128;
-		if (vars->type == 1 || vars->type == 4)
-		{
-			r = 0;
-			g = 0;
-			b = 0;
-		}
+		r = 0;
+		g = 0;
+		b = 0;
 	}
 	else
 	{
-		r = sin(0.6 * i + 0) * 127 + 128;
-		g = sin(0.6 * i + 2 * M_PI / 3) * 127 + 128;
-		b = sin(0.6 * i + 4 * M_PI / 3) * 127 + 128;
+		r = sin(0.6 * i + 0) * 127 + 128 + vars->color;
+		g = sin(0.6 * i + 2 * M_PI / 3) * 127 + 128 + vars->color;
+		b = sin(0.6 * i + 4 * M_PI / 3) * 127 + 128 + vars->color;
 	}
 	return (t << 24 | r << 16 | g << 8 | b);
 }
@@ -47,7 +41,7 @@ int	mandelbrot(t_vars *vars, int ix, int iy)
 			break ;
 		z0 = z1;
 	}
-	return (create_trgb(vars, c, i));
+	return (create_trgb(vars, i));
 }
 
 int	julia(t_vars *vars, int ix, int iy)
@@ -70,7 +64,7 @@ int	julia(t_vars *vars, int ix, int iy)
 			break ;
 		z0 = z1;
 	}
-	return (create_trgb(vars, c, i));
+	return (create_trgb(vars, i));
 }
 
 int	burningship(t_vars *vars, int ix, int iy)
@@ -92,7 +86,7 @@ int	burningship(t_vars *vars, int ix, int iy)
 		z0.x = fabs(z1.x);
 		z0.y = fabs(z1.y);
 	}
-	return (create_trgb(vars, c, i));
+	return (create_trgb(vars, i));
 }
 
 void	fractal(t_vars *vars)
@@ -101,6 +95,7 @@ void	fractal(t_vars *vars)
 	int		iy;
 	int		color;
 
+	mlx_clear_window(vars->mlx, vars->win);
 	iy = -1;
 	while (++iy < HEIGHT)
 	{

@@ -43,15 +43,22 @@ int	args_check(t_vars *vars, int argc, char **argv)
 
 int	vars_init(t_vars *vars)
 {
+	vars->img = NULL;
+	vars->addr = NULL;
+	vars->x_param = 0.0;
+	vars->y_param = 0.0;
+	vars->x_mouse = 0;
+	vars->y_mouse = 0;
+	vars->color = 0;
+	vars->side = -3.0;
+	vars->vert = -3.0;
+	vars->mag = 1.0;
 	vars->mlx = mlx_init();
 	if (vars->mlx == NULL)
 		return (1);
 	vars->win = mlx_new_window(vars->mlx, WIDTH, HEIGHT, "Fract-ol");
 	if (vars->win == NULL)
 		return (1);
-	vars->side = -3.0;
-	vars->vert = -3.0;
-	vars->mag = 1.0;
 	return (0);
 }
 
@@ -62,7 +69,7 @@ int	make_image(t_vars *vars)
 	{
 		printf("\n\x1b[41m Failed to malloc \
 in mlx_new_image. \x1b[49m\n");
-		return(1);
+		return (1);
 	}
 	vars->addr = mlx_get_data_addr(vars->img, \
 	&vars->bits_per_pixel, &vars->line_length, &vars->endian);
@@ -87,7 +94,7 @@ int	main(int argc, char **argv)
 	mlx_mouse_hook(vars.win, mouse_click, &vars);
 	mlx_hook(vars.win, 6, 1L << 6, mouse_hook, &vars);
 	mlx_hook(vars.win, 2, 1L << 0, key_hook, &vars);
-	mlx_hook(vars.win, 17, 1L << 17, cross_button, &vars);
+	mlx_hook(vars.win, 33, 0L, cross_button, &vars);
 	mlx_loop(vars.mlx);
 	return (0);
 }
