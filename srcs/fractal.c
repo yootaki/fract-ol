@@ -8,7 +8,7 @@ int	create_trgb(t_vars *vars, int i)
 	int	b;
 
 	t = 0;
-	if (i == I_MAX)
+	if (i == vars->i_max)
 	{
 		r = 0;
 		g = 0;
@@ -34,10 +34,10 @@ int	mandelbrot(t_vars *vars, int ix, int iy)
 	z0 = init(0.0, 0.0);
 	z1 = init(0.0, 0.0);
 	i = 0;
-	while (++i < I_MAX)
+	while (++i < vars->i_max)
 	{
 		z1 = add(sqr(z0), c);
-		if (mod(z1) > RADIUS)
+		if (mod(z1) > DIV_VALUE)
 			break ;
 		z0 = z1;
 	}
@@ -51,16 +51,16 @@ int	julia(t_vars *vars, int ix, int iy)
 	t_complex	z1;
 	int			i;
 
-	if (vars->type == 2)
+	if (vars->type == JULIA_MOUSE)
 		c = mappoint(vars, vars->x_mouse, vars->y_mouse);
 	else
-		c = init(vars->x_param, vars->y_param * -1.0);
+		c = init(vars->x_param, vars->y_param);
 	z0 = mappoint(vars, ix, iy);
 	i = 0;
-	while (++i < I_MAX)
+	while (++i < vars->i_max)
 	{
 		z1 = add(sqr(z0), c);
-		if (mod(z1) > RADIUS)
+		if (mod(z1) > DIV_VALUE)
 			break ;
 		z0 = z1;
 	}
@@ -78,10 +78,10 @@ int	burningship(t_vars *vars, int ix, int iy)
 	z0 = init(0.0, 0.0);
 	z1 = init(0.0, 0.0);
 	i = 0;
-	while (++i < I_MAX)
+	while (++i < vars->i_max)
 	{
 		z1 = add(sqr(z0), c);
-		if (mod(z1) > RADIUS)
+		if (mod(z1) > DIV_VALUE)
 			break ;
 		z0.x = fabs(z1.x);
 		z0.y = fabs(z1.y);
@@ -102,11 +102,13 @@ void	fractal(t_vars *vars)
 		ix = -1;
 		while (++ix < WIDTH)
 		{
-			if (vars->type == 1)
+			if (vars->type == MANDELBROT)
 				color = mandelbrot(vars, ix, iy);
-			else if (vars->type == 2 || vars->type == 3)
+			else if (vars->type == JULIA_MOUSE)
 				color = julia(vars, ix, iy);
-			else if (vars->type == 4)
+			else if (vars->type == JULIA_PARAM)
+				color = julia(vars, ix, iy);
+			else if (vars->type == BURNINGSHIP)
 				color = burningship(vars, ix, iy);
 			my_mlx_pixel_put(vars, ix, iy, color);
 		}

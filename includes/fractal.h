@@ -12,32 +12,64 @@
 # include <stdio.h>
 # include <stdlib.h>
 
-# define WIDTH  600
-# define HEIGHT 600
-# define I_MAX  25
-# define RADIUS 2
+/* window */
+# define WIDTH  600		/* 横幅 */
+# define HEIGHT 600		/* 高さ */
 
+/* calc */
+# define DIV_VALUE       2			/* 判定値 */
+# define REDUCED_SCALE   100.0		/* 縮尺 */
+# define INIT_X_POSITION -3.0		/* x初期位置 */
+# define INIT_Y_POSITION -3.0		/* y初期位置 */
+# define MOVE_DIST       0.5		/* 移動距離 */
+# define INIT_MAG        1.0		/* 初期倍率 */
+# define MAGNIFICATION   0.5		/* 拡大縮小倍率 */
+# define INIT_IMAX       25			/* 計算回数初期値 */
+# define MAX_IMAX        100		/* 計算回数最大値 */
+# define CHANGE_IMAX     5			/* 回数増減幅 */
+
+/* color */
+# define INIT_COLOR   0
+# define COLOR_CHANGE 16
+# define COLOR_MAX    1600
+
+/* keycode */
 # ifdef __linux
-#  define KEY_LEFT       65361
-#  define KEY_RIGHT      65363
-#  define KEY_DOWN       65364
-#  define KEY_UP         65362
-#  define KEY_A          97
-#  define KEY_D          100
-#  define KEY_SCROLLUP   5
-#  define KEY_SCROLLDOWN 4
-#  define KEY_ESC        65307
+#  define KEY_LEFT        65361
+#  define KEY_RIGHT       65363
+#  define KEY_DOWN        65364
+#  define KEY_UP          65362
+#  define KEY_A           97
+#  define KEY_D           100
+#  define KEY_SCROLLUP    5
+#  define KEY_SCROLLDOWN  4
+#  define KEY_SCROLLLEFT  6
+#  define KEY_SCROLLRIGHT 7
+#  define KEY_ESC         65307
 # else
-#  define KEY_LEFT       123
-#  define KEY_RIGHT      124
-#  define KEY_DOWN       125
-#  define KEY_UP         126
-#  define KEY_A          0
-#  define KEY_D          2
-#  define KEY_SCROLLUP   5
-#  define KEY_SCROLLDOWN 4
-#  define KEY_ESC        53
+#  define KEY_LEFT        123
+#  define KEY_RIGHT       124
+#  define KEY_DOWN        125
+#  define KEY_UP          126
+#  define KEY_A           0
+#  define KEY_D           2
+#  define KEY_S           1
+#  define KEY_W           13
+#  define KEY_SCROLLUP    5
+#  define KEY_SCROLLDOWN  4
+#  define KEY_SCROLLLEFT  6
+#  define KEY_SCROLLRIGHT 7
+#  define KEY_ESC         53
 # endif
+
+/* fractal number */
+enum
+{
+	MANDELBROT = 1,
+	JULIA_MOUSE,
+	JULIA_PARAM,
+	BURNINGSHIP
+};
 
 typedef struct s_vars
 {
@@ -57,6 +89,7 @@ typedef struct s_vars
 	double	side;
 	double	vert;
 	double	mag;
+	int		i_max;
 }t_vars;
 
 typedef struct s_complex

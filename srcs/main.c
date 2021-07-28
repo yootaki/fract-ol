@@ -45,14 +45,11 @@ int	vars_init(t_vars *vars)
 {
 	vars->img = NULL;
 	vars->addr = NULL;
-	vars->x_param = 0.0;
-	vars->y_param = 0.0;
-	vars->x_mouse = 0;
-	vars->y_mouse = 0;
-	vars->color = 0;
-	vars->side = -3.0;
-	vars->vert = -3.0;
-	vars->mag = 1.0;
+	vars->color = INIT_COLOR;
+	vars->side = INIT_X_POSITION;
+	vars->vert = INIT_Y_POSITION;
+	vars->mag = INIT_MAG;
+	vars->i_max = INIT_IMAX;
 	vars->mlx = mlx_init();
 	if (vars->mlx == NULL)
 		return (1);
@@ -94,7 +91,7 @@ int	main(int argc, char **argv)
 	mlx_mouse_hook(vars.win, mouse_click, &vars);
 	mlx_hook(vars.win, 6, 1L << 6, mouse_hook, &vars);
 	mlx_hook(vars.win, 2, 1L << 0, key_hook, &vars);
-	mlx_hook(vars.win, 33, 0L, cross_button, &vars);
+	mlx_hook(vars.win, 33, 1L << 17, cross_button, &vars);
 	mlx_loop(vars.mlx);
 	return (0);
 }
