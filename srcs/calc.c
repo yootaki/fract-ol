@@ -1,42 +1,30 @@
 #include "../includes/fractal.h"
 
-t_complex	init(double a, double b)
+void	init(t_complex *c, double a, double b)
 {
-	t_complex	c;
-
-	c.x = a;
-	c.y = b;
-	return (c);
+	c->x = a;
+	c->y = b;
 }
 
-t_complex	add(t_complex a, t_complex b)
+void	add(t_complex *c, t_complex a, t_complex b)
 {
-	t_complex	c;
-
-	c.x = a.x + b.x;
-	c.y = a.y + b.y;
-	return (c);
+	c->x = a.x + b.x;
+	c->y = a.y + b.y;
 }
 
-t_complex	sqr(t_complex a)
+void	sqr(t_complex *c, t_complex a)
 {
-	t_complex	c;
-
-	c.x = pow(a.x, 2.0) - pow(a.y, 2.0);
-	c.y = 2 * a.x * a.y;
-	return (c);
+	c->x = (a.x * a.x) - (a.y * a.y);
+	c->y = 2 * a.x * a.y;
 }
 
 double	mod(t_complex a)
 {
-	return (sqrt(pow(a.x, 2.0) + pow(a.y, 2.0)));
+	return ((a.x * a.x + a.y * a.y));
 }
 
-t_complex	mappoint(t_vars *vars, int x, int y)
+void	mappoint(t_vars *vars, t_complex *c, int x, int y)
 {
-	t_complex	c;
-
-	c.x = (x / (double)REDUCED_SCALE + vars->side) / vars->mag;
-	c.y = (y / (double)REDUCED_SCALE + vars->vert) / vars->mag;
-	return (c);
+	c->x = (x / (double)REDUCED_SCALE + vars->side) / vars->mag;
+	c->y = (y / (double)REDUCED_SCALE + vars->vert) / vars->mag;
 }

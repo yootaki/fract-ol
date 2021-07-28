@@ -40,7 +40,7 @@ int	mouse_click(int button, int x, int y, t_vars *vars)
 	t_complex	c;
 	double		n;
 
-	c = mappoint(vars, x, y);
+	mappoint(vars, &c, x, y);
 	n = 0.0;
 	if (button == KEY_SCROLLUP)
 	{

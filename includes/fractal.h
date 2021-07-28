@@ -108,11 +108,11 @@ int			vars_init(t_vars *vars);
 int			make_image(t_vars *vars);
 
 /* calcs */
-t_complex	init(double a, double b);
-t_complex	add(t_complex a, t_complex b);
-t_complex	sqr(t_complex a);
+void		init(t_complex *c, double a, double b);
+void		add(t_complex *c, t_complex a, t_complex b);
+void		sqr(t_complex *c, t_complex a);
 double		mod(t_complex a);
-t_complex	mappoint(t_vars *vars, int x, int y);
+void		mappoint(t_vars *vars, t_complex *c, int x, int y);
 
 /* hooks */
 int			mouse_hook(int x, int y, t_vars *vars);

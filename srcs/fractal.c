@@ -30,14 +30,15 @@ int	mandelbrot(t_vars *vars, int ix, int iy)
 	t_complex	z1;
 	int			i;
 
-	c = mappoint(vars, ix, iy);
-	z0 = init(0.0, 0.0);
-	z1 = init(0.0, 0.0);
+	mappoint(vars, &c, ix, iy);
+	init(&z0, 0.0, 0.0);
+	init(&z1, 0.0, 0.0);
 	i = 0;
 	while (++i < vars->i_max)
 	{
-		z1 = add(sqr(z0), c);
-		if (mod(z1) > DIV_VALUE)
+		sqr(&z0, z0);
+		add(&z1, z0, c);
+		if (mod(z1) > DIV_VALUE * DIV_VALUE)
 			break ;
 		z0 = z1;
 	}
@@ -52,15 +53,16 @@ int	julia(t_vars *vars, int ix, int iy)
 	int			i;
 
 	if (vars->type == JULIA_MOUSE)
-		c = mappoint(vars, vars->x_mouse, vars->y_mouse);
+		mappoint(vars, &c, vars->x_mouse, vars->y_mouse);
 	else
-		c = init(vars->x_param, vars->y_param);
-	z0 = mappoint(vars, ix, iy);
+		init(&c, vars->x_param, vars->y_param);
+	mappoint(vars, &z0, ix, iy);
 	i = 0;
 	while (++i < vars->i_max)
 	{
-		z1 = add(sqr(z0), c);
-		if (mod(z1) > DIV_VALUE)
+		sqr(&z0, z0);
+		add(&z1, z0, c);
+		if (mod(z1) > DIV_VALUE * DIV_VALUE)
 			break ;
 		z0 = z1;
 	}
@@ -74,14 +76,15 @@ int	burningship(t_vars *vars, int ix, int iy)
 	t_complex	z1;
 	int			i;
 
-	c = mappoint(vars, ix, iy);
-	z0 = init(0.0, 0.0);
-	z1 = init(0.0, 0.0);
+	mappoint(vars, &c, ix, iy);
+	init(&z0, 0.0, 0.0);
+	init(&z1, 0.0, 0.0);
 	i = 0;
 	while (++i < vars->i_max)
 	{
-		z1 = add(sqr(z0), c);
-		if (mod(z1) > DIV_VALUE)
+		sqr(&z0, z0);
+		add(&z1, z0, c);
+		if (mod(z1) > DIV_VALUE * DIV_VALUE)
 			break ;
 		z0.x = fabs(z1.x);
 		z0.y = fabs(z1.y);
