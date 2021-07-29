@@ -48,6 +48,7 @@
 #  define KEY_SCROLLLEFT  6
 #  define KEY_SCROLLRIGHT 7
 #  define KEY_ESC         65307
+#  define BUTTON_CROSS    33
 # else
 #  define KEY_LEFT        123
 #  define KEY_RIGHT       124
@@ -62,6 +63,7 @@
 #  define KEY_SCROLLLEFT  6
 #  define KEY_SCROLLRIGHT 7
 #  define KEY_ESC         53
+#  define BUTTON_CROSS    17
 # endif
 
 /* fractal number */
@@ -131,5 +133,6 @@ void		fractal(t_vars *vars);
 void		my_mlx_pixel_put(t_vars *vars, int x, int y, int color);
 int			ft_isdigit(int c);
 double		myatof(char *s);
+int			ft_strcmp_f(const char *s1, const char *s2);
 
 #endif

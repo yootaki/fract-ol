@@ -1,4 +1,5 @@
 #include "../includes/fractal.h"
+#include "../includes/libft/libft.h"
 
 void	err_print(void)
 {
@@ -66,4 +67,20 @@ double	myatof(char *s)
 			n += (*s - '0') * (i *= 0.1);
 	}
 	return (n * sign);
+}
+
+int	ft_strcmp_f(const char *s1, const char *s2)
+{
+	int	i;
+
+	if (ft_strlen(s1) != ft_strlen(s2))
+		return (1);
+	i = 0;
+	while ((s1[i] != '\0' || s2[i] != '\0'))
+	{
+		if (s1[i] != s2[i])
+			return (1);
+		i++;
+	}
+	return (0);
 }

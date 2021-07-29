@@ -1,4 +1,5 @@
 #include "../includes/fractal.h"
+#include "../includes/libft/libft.h"
 
 int	argv_check(char *s)
 {
@@ -26,11 +27,11 @@ int	argv_check(char *s)
 
 int	args_check(t_vars *vars, int argc, char **argv)
 {
-	if (argc == 2 && \
-	(argv[1][0] == '1' || argv[1][0] == '2' || argv[1][0] == '4'))
+	if (argc == 2 && (!ft_strcmp_f(argv[1], "1") ||\
+	!ft_strcmp_f(argv[1], "2") || !ft_strcmp_f(argv[1], "4")))
 		vars->type = argv[1][0] - '0';
-	else if (argc == 4 && \
-	argv[1][0] == '3' && argv_check(argv[2]) && argv_check(argv[3]))
+	else if (argc == 4 && !ft_strcmp_f(argv[1], "3") &&\
+	argv_check(argv[2]) && argv_check(argv[3]))
 	{
 		vars->type = argv[1][0] - '0';
 		vars->x_param = myatof(argv[2]);
@@ -43,8 +44,6 @@ int	args_check(t_vars *vars, int argc, char **argv)
 
 int	vars_init(t_vars *vars)
 {
-	vars->img = NULL;
-	vars->addr = NULL;
 	vars->color = INIT_COLOR;
 	vars->side = INIT_X_POSITION;
 	vars->vert = INIT_Y_POSITION;
@@ -77,6 +76,7 @@ int	main(int argc, char **argv)
 {
 	t_vars	vars;
 
+	ft_bzero(&vars, 17);
 	if (args_check(&vars, argc, argv))
 	{
 		err_print();
@@ -91,7 +91,7 @@ int	main(int argc, char **argv)
 	mlx_mouse_hook(vars.win, mouse_click, &vars);
 	mlx_hook(vars.win, 6, 1L << 6, mouse_hook, &vars);
 	mlx_hook(vars.win, 2, 1L << 0, key_hook, &vars);
-	mlx_hook(vars.win, 17, 1L << 17, cross_button, &vars);
+	mlx_hook(vars.win, BUTTON_CROSS, 1L << 17, cross_button, &vars);
 	mlx_loop(vars.mlx);
 	return (0);
 }

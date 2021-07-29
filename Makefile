@@ -12,6 +12,8 @@ LINUX_INCLUDE = -I $(MINILIBX_LINUX)
 MAC_FLAGS = -L includes/minilibx_opengl_20191021/ -lmlx -framework OpenGL -framework AppKit
 MAC_INCLUDE = -I includes/minilibx_opengl_20191021/
 
+LIBS = includes/libft/libft.a
+
 SRCS = srcs/main.c\
 srcs/fractal.c\
 srcs/calc.c\
@@ -29,12 +31,17 @@ all: $(NAME)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 #osがlinuxの場合とその他の場合でコンパイルを分ける
-$(NAME): $(MINILIBX_LINUX) $(OBJS)
+$(NAME): $(OBJS) $(LIBS)
 ifeq ($(shell uname),Linux)
-	$(CC) $(CFLAGS) $(OBJS) -o $(NAME) $(LINUX_INCLUDE) $(LINUX_FLAGS)
+	$(MINILIBX_LINUX)
+	$(CC) $(CFLAGS) $(OBJS) -o $(NAME) $(LINUX_INCLUDE) $(LINUX_FLAGS) $(LIBS)
 else
-	$(CC) $(CFLAGS) $(OBJS) -o $(NAME) $(MAC_INCLUDE) $(MAC_FLAGS)
+	$(CC) $(CFLAGS) $(OBJS) -o $(NAME) $(MAC_INCLUDE) $(MAC_FLAGS) $(LIBS)
 endif
+
+#libft compile
+$(LIBS):
+	$(MAKE) -C includes/libft/
 
 #ディレクトリがない場合はgitcloneしてmake
 $(MINILIBX_LINUX):
@@ -52,6 +59,7 @@ clean:
 	rm -f $(OBJS)
 	rm -rf $(DEBUG_DIR)
 	rm -rf $(MINILIBX_LINUX)
+	$(MAKE) fclean -C includes/libft/
 
 fclean: clean
 	rm -f $(NAME)
@@ -61,7 +69,6 @@ re: fclean all
 # **************************************************
 # **************************************************
 
-#セグフォなどのデバッグ用フラグ
 debug: CFLAGS += -g3 -fsanitize=address
 
 debug: re
