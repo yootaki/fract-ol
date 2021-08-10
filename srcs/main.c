@@ -27,10 +27,10 @@ int	argv_check(char *s)
 
 int	args_check(t_vars *vars, int argc, char **argv)
 {
-	if (argc == 2 && (!ft_strcmp_f(argv[1], "1") ||\
+	if (argc == 2 && (!ft_strcmp_f(argv[1], "1") || \
 	!ft_strcmp_f(argv[1], "2") || !ft_strcmp_f(argv[1], "4")))
 		vars->type = argv[1][0] - '0';
-	else if (argc == 4 && !ft_strcmp_f(argv[1], "3") &&\
+	else if (argc == 4 && !ft_strcmp_f(argv[1], "3") && \
 	argv_check(argv[2]) && argv_check(argv[3]))
 	{
 		vars->type = argv[1][0] - '0';

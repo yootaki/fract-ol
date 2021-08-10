@@ -131,7 +131,6 @@ void		fractal(t_vars *vars);
 
 /* utils */
 void		my_mlx_pixel_put(t_vars *vars, int x, int y, int color);
-int			ft_isdigit(int c);
 double		myatof(char *s);
 int			ft_strcmp_f(const char *s1, const char *s2);
 

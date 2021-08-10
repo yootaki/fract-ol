@@ -23,7 +23,7 @@ void	free_mlx(t_vars *vars)
 {
 	mlx_destroy_image(vars->mlx, vars->img);
 	mlx_destroy_window(vars->mlx, vars->win);
-	// mlx_destroy_display(vars->mlx);
+	mlx_destroy_display(vars->mlx);
 	free(vars->mlx);
 }
 
@@ -33,11 +33,6 @@ void	my_mlx_pixel_put(t_vars *vars, int x, int y, int color)
 
 	dst = vars->addr + (y * vars->line_length + x * (vars->bits_per_pixel / 8));
 	*(unsigned int *)dst = color;
-}
-
-int	ft_isdigit(int c)
-{
-	return (c >= '0' && c <= '9');
 }
 
 double	myatof(char *s)
