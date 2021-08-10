@@ -68,13 +68,25 @@ $ ./fractol 4
 ## キーコントロール
 
 キーボードとマウスを使ってフラクタルをコントロールすることができます。
-- A：カラー変更
-- D：カラー変更
-- W：計算回数増加
-- S：計算回数減少
-- 矢印キー(←)：左に移動
-- 矢印キー(↑)：上に移動
-- 矢印キー(→)：右に移動
-- 矢印キー(↓)：下に移動
-- 上スクロール：ズームイン
-- 下スクロール：ズームアウト
+```
+・A：カラー変更
+・D：カラー変更
+```
+![fractal color](https://raw.github.com/wiki/yootaki/fract-ol/images/color.gif)
+```
+・W：計算回数増加
+・S：計算回数減少
+```
+![fractal calc](https://raw.github.com/wiki/yootaki/fract-ol/images/calc.gif)
+```
+・矢印キー(←)：左に移動
+・矢印キー(↑)：上に移動
+・矢印キー(→)：右に移動
+・矢印キー(↓)：下に移動
+```
+![fractal slide](https://raw.github.com/wiki/yootaki/fract-ol/images/slide.gif)
+```
+・上スクロール：ズームイン
+・下スクロール：ズームアウト
+```
+![fractal zoom](https://raw.github.com/wiki/yootaki/fract-ol/images/zoom.gif)
