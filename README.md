@@ -2,8 +2,7 @@
 
 ![fractal](https://raw.github.com/wiki/yootaki/fract-ol/images/fractal.gif)
 
-Fract-olは42Tokyoのプロジェクトです。\
-このプロジェクトの目的はLinuxとMacで動作するフラクタルレンダラーを作成することです。
+LinuxOSとMacOSで動作するフラクタルレンダラーを作成しました。
 <br>
 <br>
 
