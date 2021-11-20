@@ -9,15 +9,15 @@ LinuxOSとMacOSで動作するフラクタルレンダラーを作成しまし�
 ## 使用方法
 ファイルをクローンします。
 ```
-$ git clone <repository url>
+$ git clone https://github.com/yootaki/fract-ol.git
 ```
 <br>
 
-クローンを作成したら、ディレクトリ内に移動し、次のコマンドを実行します。
+クローンを作成したら、ディレクトリ内に移動してmakeします。
 ```
 $ make
 ```
-もしMacOS上でプログラムを実行する場合は以下の行(mlx_destroy_display)をコメントアウトしてください
+もしMacOS上でプログラムを実行する場合は以下の行(mlx_destroy_display)をコメントアウトしてください。
 ```:utils.c
 void	free_mlx(t_vars *vars)
 {
